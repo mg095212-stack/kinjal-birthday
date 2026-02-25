@@ -8,102 +8,96 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-    background:black;
-    font-family:'Segoe UI',sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    overflow:hidden;
+background:black;
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
 }
 
-/* Reel Container */
+/* FULL SCREEN REEL */
 .reel{
-    width:360px;
-    height:640px;
-    background:linear-gradient(180deg,#1a001a,#330033,#000);
-    border-radius:30px;
-    overflow:hidden;
-    position:relative;
-    box-shadow:0 0 40px rgba(255,0,150,0.6);
-    color:white;
-    text-align:center;
-    padding:20px;
+width:100vw;
+height:100vh;
+background:linear-gradient(180deg,#0f0c29,#302b63,#24243e);
+position:relative;
+color:white;
+text-align:center;
+padding:20px;
+overflow:hidden;
 }
 
 /* Intro */
 #intro{
-    position:absolute;
-    inset:0;
-    background:black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    z-index:10;
+position:absolute;
+inset:0;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:20;
 }
 
 #intro h1{
-    font-size:32px;
-    color:#ff4da6;
-    text-shadow:0 0 20px #ff4da6;
+font-size:36px;
+color:#ff4da6;
+text-shadow:0 0 25px #ff4da6;
 }
 
 #intro button{
-    margin-top:20px;
-    padding:12px 30px;
-    border:none;
-    border-radius:30px;
-    background:#ff0077;
-    color:white;
-    font-size:18px;
+margin-top:20px;
+padding:14px 40px;
+border:none;
+border-radius:40px;
+background:#ff0077;
+color:white;
+font-size:18px;
 }
 
-/* Photo Slider */
+/* Slider */
 .slider{
-    width:100%;
-    height:300px;
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:10px;
-    background:black;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+width:100%;
+height:50vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:black;
+border-radius:20px;
+overflow:hidden;
 }
 
 .slider img{
-    max-width:100%;
-    max-height:100%;
-    object-fit:contain;   /* FACE NOT CUT */
-    transition:1s;
+max-width:100%;
+max-height:100%;
+object-fit:contain;
+transition:1s;
 }
 
 /* Text */
 h2{
-    margin-top:15px;
-    color:#ff66cc;
+margin-top:15px;
+color:#ff80bf;
 }
 
 #typing{
-    margin-top:10px;
-    min-height:70px;
-    font-size:15px;
+margin-top:10px;
+min-height:60px;
+font-size:16px;
+padding:0 10px;
 }
 
 /* Proposal */
 #proposal{
-    margin-top:15px;
-    display:none;
-    position:relative;
+margin-top:15px;
+display:none;
+position:relative;
 }
 
 .btn{
-    margin:8px;
-    padding:8px 18px;
-    border:none;
-    border-radius:20px;
-    font-size:14px;
+margin:8px;
+padding:10px 22px;
+border:none;
+border-radius:25px;
+font-size:15px;
 }
 
 #yes{background:#ff0077;color:white;}
@@ -111,21 +105,33 @@ h2{
 
 /* Hearts */
 .heart{
-    position:absolute;
-    bottom:-10px;
-    font-size:18px;
-    animation:rise 6s linear infinite;
+position:absolute;
+bottom:-10px;
+font-size:20px;
+animation:rise 6s linear infinite;
 }
 
 @keyframes rise{
-    to{transform:translateY(-700px);opacity:0;}
+to{transform:translateY(-100vh);opacity:0;}
+}
+
+/* Rose Petals */
+.petal{
+position:absolute;
+top:-20px;
+font-size:18px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
 }
 
 /* Fireworks */
 canvas{
-    position:absolute;
-    inset:0;
-    pointer-events:none;
+position:absolute;
+inset:0;
+pointer-events:none;
 }
 </style>
 </head>
@@ -153,7 +159,7 @@ canvas{
 
 <div id="typing"></div>
 
-<button class="btn" onclick="showProposal()">Special Surprise 💍</button>
+<button class="btn" onclick="showProposal()">Open Special Surprise 💍</button>
 
 <div id="proposal">
 <p>Will You Be Mine Forever? ❤️</p>
@@ -172,13 +178,13 @@ document.getElementById("music").play();
 }
 
 /* Typing */
-var text="Kinjal... tum meri duniya ho 💖 Har pal tumhare saath rehna meri sabse badi khushi hai. I Love You Forever ❤️";
+var text="Kinjal... tum meri duniya ho 💖 Har pal tumhare saath rehna meri sabse badi khushi hai. Aaj main tumse promise karta hoon... I will love you forever ❤️";
 var i=0;
 function type(){
 if(i<text.length){
 document.getElementById("typing").innerHTML+=text.charAt(i);
 i++;
-setTimeout(type,40);
+setTimeout(type,35);
 }}
 type();
 
@@ -192,7 +198,7 @@ document.getElementById("slide").style.opacity=0;
 setTimeout(()=>{
 document.getElementById("slide").src=images[x];
 document.getElementById("slide").style.opacity=1;
-},500);
+},400);
 },3000);
 
 /* Proposal */
@@ -203,8 +209,8 @@ document.getElementById("proposal").style.display="block";
 /* Moving NO */
 var no=document.getElementById("no");
 no.addEventListener("mouseover",function(){
-no.style.top=Math.random()*400+"px";
-no.style.left=Math.random()*200+"px";
+no.style.top=Math.random()*500+"px";
+no.style.left=Math.random()*250+"px";
 });
 
 /* Hearts */
@@ -212,26 +218,37 @@ setInterval(function(){
 var heart=document.createElement("div");
 heart.className="heart";
 heart.innerHTML="❤️";
-heart.style.left=Math.random()*300+"px";
+heart.style.left=Math.random()*100+"vw";
 document.querySelector(".reel").appendChild(heart);
 setTimeout(()=>heart.remove(),6000);
 },800);
 
-/* REAL FIREWORKS ENGINE */
+/* Rose Petals */
+setInterval(function(){
+var petal=document.createElement("div");
+petal.className="petal";
+petal.innerHTML="🌹";
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=(Math.random()*5+5)+"s";
+document.querySelector(".reel").appendChild(petal);
+setTimeout(()=>petal.remove(),10000);
+},700);
+
+/* FIREWORK ENGINE */
 var canvas=document.getElementById("fireworks");
 var ctx=canvas.getContext("2d");
-canvas.width=360;
-canvas.height=640;
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
 var particles=[];
 
 function createFirework(){
-for(let i=0;i<80;i++){
+for(let i=0;i<100;i++){
 particles.push({
-x:180,
-y:320,
+x:canvas.width/2,
+y:canvas.height/2,
 angle:Math.random()*2*Math.PI,
-speed:Math.random()*4+2,
+speed:Math.random()*5+2,
 radius:2,
 life:100
 });
@@ -259,6 +276,7 @@ function celebrate(){
 createFirework();
 setTimeout(createFirework,400);
 setTimeout(createFirework,800);
+setTimeout(createFirework,1200);
 alert("She Said YES ❤️🔥 Forever Starts Today!");
 }
 
